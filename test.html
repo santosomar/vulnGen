@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.css" rel="stylesheet" type="text/css" >
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.js"></script>
+
+<style>
+
+.nav-tabs {
+  cursor: pointer;
+}
+
+.tab-pane {
+  padding: 5px;
+}
+
+li.active > a {
+  border-top: solid 3px #428bca !important;
+}
+
+
+ </style>
+
+<script type="text/javascript">
+
+var app = angular.module('tabs', ['ui.bootstrap']);
+
+app.controller("tabController", function($scope) {
+  $scope.loadHomeTab = function() {
+    $scope.home = '/index.html';
+  };
+});
+
+</script>
+
+</head>
+
+
+
+<div ng-app="tabs" ng-controller="tabController">
+
+  <script type="text/ng-template" id="/index.html">
+    This is home content that will be loaded dynamically.
+
+
+<div ng-app="">
+<h1>CSAF/CVRF Generator </h1>
+<p> The Common Security Advisory Framework (CSAF) - Common Vulnerability Reporting Framework (CVRF) Generator is a tool that allows you to create a CVRF 1.2 document by entering information about a vulnerability in the following form.
+<br>
+
+This tool is a work in progress and will be further enhanced to support future versions of CSAF, as well as other formats </p>
+<hr>
+
+
+  <form>
+  Vulnerability Title: <input type="text" ng-model="title">
+    <br>
+    CVE ID: <input type="text" ng-model="cve">
+    
+    Add
+    
+</form>
+
+
+
+  
+</div>
+
+
+
+
+
+
+  </script>
+
+  <tabset>
+    <tab heading="Home" select="loadHomeTab()">
+      <div ng-include="home"></div>
+    </tab>
+    <tab heading="CVRF">
+<h2> CVRF Document </h2>
+
+<div ng-app="">
+
+<pre>
+ &lt;?xml version="1.0" encoding="UTF-8"? &gt;
+ &lt;cvrfdoc 
+  xmlns:cpe="http://cpe.mitre.org/language/2.0"
+  xmlns:cvrf="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf"
+  xmlns:cvrf-common="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/common"
+  xmlns:cvssv2="http://scap.nist.gov/schema/cvss-v2/1.0"
+  xmlns:cvssv3="https://www.first.org/cvss/cvss-v3.0.xsd"
+  xmlns:dc="http://purl.org/dc/elements/1.2/"
+  xmlns:ns0="http://purl.org/dc/elements/1.1/"
+  xmlns:prod="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/prod"
+  xmlns:scap-core="http://scap.nist.gov/schema/scap-core/1.0"
+  xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+  xmlns:vuln="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/vuln"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance
+  xmlns="http://docs.oasis-open.org/csaf/ns/csaf-cvrf/v1.2/cvrf"
+  &gt;
+  &lt;!-- Document wide context information --&gt;
+  
+  
+  
+  
+  
+  You entered: {{title}}
+  
+  &lt;cve_id&gt; this is the CVE ID: {{cve}}  &lt;/cve_id&gt;
+  
+    &lt;cve_id&gt; this is the CVE ID: {{myVar}}  &lt;/cve_id&gt;
+
+&lt;!-- No more elements to follow --&gt;
+&lt;/cvrfdoc&gt;
+
+
+  </pre>
+</div>
+
+    </tab>
+    <tab heading="CVE JSON">
+
+    </tab>
+    <tab heading="Notification Templates">
+
+    </tab>
+  </tabset>
+
+</div>
+
+
+
+
+
+</html>
